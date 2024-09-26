@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=4 uid="uid://buxknj5bubimr"]
+[gd_scene load_steps=7 format=4 uid="uid://buxknj5bubimr"]
 
-[ext_resource type="PackedScene" uid="uid://33rqtq1u01cf" path="res://scenes/player.tscn" id="1_awv2w"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ocabv"]
 [ext_resource type="PackedScene" uid="uid://dlqf1wtcvvt4p" path="res://scenes/rock.tscn" id="2_kveu1"]
 [ext_resource type="TileSet" uid="uid://b5mrgckge0afr" path="res://game.tres" id="2_n26u8"]
@@ -11,10 +10,6 @@
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ocabv")
-
-[node name="Player" parent="." instance=ExtResource("1_awv2w")]
-unique_name_in_owner = true
-visible = false
 
 [node name="Foreground" type="TileMapLayer" parent="."]
 visible = false
@@ -34,11 +29,12 @@ position = Vector2(-115, -46)
 [node name="Rock2" parent="." instance=ExtResource("2_kveu1")]
 position = Vector2(117, -4)
 
-[node name="WallsNode" type="Node2D" parent="."]
+[node name="WallsNode" type="Node2D" parent="." groups=["WallsNode"]]
 unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 energy = 0.89
 blend_mode = 1
 

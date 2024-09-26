@@ -6,7 +6,7 @@ const heart = preload("res://scenes/heart.tscn")
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hit_timer = $HitTimer
-@onready var walls_node = %WallsNode
+#@onready var walls_node = %WallsNode
 
 
 
@@ -26,7 +26,8 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	updateHealth()
+	if is_multiplayer_authority():
+		updateHealth()
 
 	if is_multiplayer_authority():
 		$Camera2D.make_current()
@@ -62,26 +63,30 @@ func _process(_delta):
 		
 		if ray_cast_right.is_colliding() && lookAt == 'right':
 			var itemRight = ray_cast_right.get_collider()
-			#print(itemRight)
+			print(itemRight)
 			#print(itemRight.has_method("is_descructable"))
 			
 			if itemRight.has_method("is_descructable") && Input.is_action_just_pressed("primary"):
 				#print("Hit")
 				target = itemRight
-
 				hit_timer.start()
+				
+			if itemRight.has_method("get_hit") && Input.is_action_just_pressed("primary"):
+				itemRight.get_hit(1)
 
 				
 			
 			
 		if ray_cast_left.is_colliding() && lookAt == 'left':
 			var itemLeft = ray_cast_left.get_collider()
-			#print(itemLeft)
+			print(itemLeft)
 			#print(itemLeft.has_method("is_descructable"))
 			if itemLeft.has_method("is_descructable") && Input.is_action_just_pressed("primary"):
 				target = itemLeft
 				hit_timer.start()
-
+			if itemLeft.has_method("get_hit") && Input.is_action_just_pressed("primary"):
+				itemLeft.get_hit(1)
+				
 		
 	#		Roll and slice
 		if Input.is_action_pressed("primary", true):
@@ -95,6 +100,7 @@ func _process(_delta):
 			
 		if Input.is_action_just_pressed("secondary"):
 			var wallBlock = WALL.instantiate()
+			var wall_nodes = get_tree().get_first_node_in_group("WallsNode")
 			var xPos = position.x
 			if lookAt == "right":
 				xPos = ceil(position.x / 16) * 16 + 16
@@ -108,8 +114,8 @@ func _process(_delta):
 					wallBlock.position = wallPostion
 					print(wallBlock)
 					print(wallPostion)
-					print(walls_node)
-					#walls_node.add_child(wallBlock)
+					print( wall_nodes)
+					wall_nodes.add_child(wallBlock)
 				else:
 					print("THERE'S A BLOCK ALREADY")
 			if lookAt == "right":
@@ -117,9 +123,9 @@ func _process(_delta):
 					wallBlock.position = wallPostion
 					print(wallBlock)
 					print(wallPostion)
-					print(walls_node)
+					print( wall_nodes)
 					
-					#walls_node.add_child(wallBlock)
+					wall_nodes.add_child(wallBlock)
 				else:
 					print("THERE'S A BLOCK ALREADY")
 				
@@ -145,14 +151,14 @@ func get_hit(number: float):
 	
 
 func _on_hit_timer_timeout():
-	
+	var wall_nodes = get_tree().get_first_node_in_group("WallsNode")
 	if target.has_method("is_descructable"):
 		if lookAt == "right" && ray_cast_right.get_collider() != target:
 			return
 		if lookAt == "left" && ray_cast_left.get_collider() != target:
 			return
 		if target.health == 0 || target.health < 0 || target.health - damage == 0: 
-			walls_node.remove_child(target)
+			wall_nodes.remove_child(target)
 			return
 			
 		if target.health > 0:

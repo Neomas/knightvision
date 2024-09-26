@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GlobalSingleton="*res://scripts/global_singleton.gd"
 
+[global_group]
+
+WallsNode=""
+
 [input]
 
 move_up={
