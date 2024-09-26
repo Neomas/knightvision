@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://bhwnbaje65kvf"]
 
 [ext_resource type="Texture2D" uid="uid://b57jk2pk87syi" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/walk/treant-walk-front.png" id="1_cjgjn"]
-[ext_resource type="Script" path="res://scenes/treant.gd" id="1_jaris"]
+[ext_resource type="Script" path="res://scripts/treant.gd" id="1_jaris"]
 [ext_resource type="Texture2D" uid="uid://cmpmtvvmwfav2" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/idle/treant-idle-front.png" id="2_6eck2"]
 [ext_resource type="Texture2D" uid="uid://bpgxiw6r0tily" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/walk/treant-walk-side.png" id="3_hwx06"]
 [ext_resource type="Texture2D" uid="uid://24qy4u4m6lww" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/walk/treant-walk-back.png" id="4_f4iab"]

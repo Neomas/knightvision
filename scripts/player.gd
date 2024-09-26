@@ -26,7 +26,7 @@ func _enter_tree():
 	set_multiplayer_authority(name.to_int())
 
 func _ready():
-	updateHealth(healthbar, health)
+	updateHealth()
 
 	if is_multiplayer_authority():
 		$Camera2D.make_current()
@@ -137,7 +137,7 @@ func _process(_delta):
 func get_hit(number: float):
 	if health > 0:
 		health = health - number
-		updateHealth(healthbar, health)
+		updateHealth()
 	if health == 0: 
 		death()
 
@@ -160,13 +160,12 @@ func _on_hit_timer_timeout():
 
 
 func death():
-		#reload_current_scene() 
 	position = Vector2(0,0)
 	health = 3
-	updateHealth(healthbar, health)
+	updateHealth()
 	visible = true
 	
-func updateHealth(healthbar, health):
+func updateHealth():
 	var children = healthbar.get_children()
 	for child in children:
 		child.free()

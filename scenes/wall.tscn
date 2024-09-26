@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://6a4qy7bg2j3k"]
 
 [ext_resource type="Texture2D" uid="uid://dofiup6w5aejr" path="res://assets/Misc/gems/spritesheets/stage-tileset.png" id="1_ip2s2"]
-[ext_resource type="Script" path="res://scenes/wall.gd" id="1_ys5yf"]
+[ext_resource type="Script" path="res://scripts/wall.gd" id="1_ys5yf"]
 [ext_resource type="Texture2D" uid="uid://bkn31l5eyy4f8" path="res://assets/Misc/gems/spritesheets/gems-spritesheet.png" id="3_0ukcx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fd3u8"]
