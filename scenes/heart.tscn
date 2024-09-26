@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2okjic6y7mni"]
+
+[ext_resource type="Texture2D" uid="uid://c1vrrwb0brd5v" path="res://assets/Packs/tiny-RPG-forest-files/PNG/sprites/misc/hearts/hearts-1.png" id="1_rs8uj"]
+[ext_resource type="Texture2D" uid="uid://xpe2pm3osk5g" path="res://assets/Textures/light_clean.webp" id="2_tv7eh"]
+
+[node name="Heart" type="Node2D"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rs8uj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+texture = ExtResource("2_tv7eh")
+texture_scale = 0.03

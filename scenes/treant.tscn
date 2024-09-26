@@ -1,0 +1,156 @@
+[gd_scene load_steps=22 format=3 uid="uid://bhwnbaje65kvf"]
+
+[ext_resource type="Texture2D" uid="uid://b57jk2pk87syi" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/walk/treant-walk-front.png" id="1_cjgjn"]
+[ext_resource type="Script" path="res://scenes/treant.gd" id="1_jaris"]
+[ext_resource type="Texture2D" uid="uid://cmpmtvvmwfav2" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/idle/treant-idle-front.png" id="2_6eck2"]
+[ext_resource type="Texture2D" uid="uid://bpgxiw6r0tily" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/walk/treant-walk-side.png" id="3_hwx06"]
+[ext_resource type="Texture2D" uid="uid://24qy4u4m6lww" path="res://assets/Packs/tiny-RPG-forest-files/PNG/spritesheets/treant/walk/treant-walk-back.png" id="4_f4iab"]
+[ext_resource type="PackedScene" uid="uid://bo8y8xv1net8o" path="res://scenes/killzone.tscn" id="5_pt40c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkg0i"]
+atlas = ExtResource("1_cjgjn")
+region = Rect2(0, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6th0"]
+atlas = ExtResource("1_cjgjn")
+region = Rect2(31, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsl6g"]
+atlas = ExtResource("1_cjgjn")
+region = Rect2(62, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lqco"]
+atlas = ExtResource("1_cjgjn")
+region = Rect2(93, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6clak"]
+atlas = ExtResource("2_6eck2")
+region = Rect2(0, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq11o"]
+atlas = ExtResource("3_hwx06")
+region = Rect2(31, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vdg3"]
+atlas = ExtResource("3_hwx06")
+region = Rect2(62, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipxf5"]
+atlas = ExtResource("3_hwx06")
+region = Rect2(93, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rypbr"]
+atlas = ExtResource("3_hwx06")
+region = Rect2(0, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w73li"]
+atlas = ExtResource("4_f4iab")
+region = Rect2(0, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2euki"]
+atlas = ExtResource("4_f4iab")
+region = Rect2(31, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01tv2"]
+atlas = ExtResource("4_f4iab")
+region = Rect2(62, 0, 31, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14fui"]
+atlas = ExtResource("4_f4iab")
+region = Rect2(93, 0, 31, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_duch4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkg0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6th0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsl6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lqco")
+}],
+"loop": true,
+"name": &"downwalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6clak")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq11o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vdg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipxf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rypbr")
+}],
+"loop": true,
+"name": &"sidewalk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w73li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2euki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01tv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14fui")
+}],
+"loop": true,
+"name": &"upwalk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_es7b7"]
+size = Vector2(26, 22)
+
+[node name="Treant" type="Node2D"]
+script = ExtResource("1_jaris")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_duch4")
+animation = &"upwalk"
+autoplay = "idle"
+
+[node name="Killzone" parent="." instance=ExtResource("5_pt40c")]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-1, 8)
+shape = SubResource("RectangleShape2D_es7b7")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(13, 0)
+
+[node name="RayCastTop" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(0, -13)
+
+[node name="RayCastBottom" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(0, 16)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 7)
+target_position = Vector2(-15, 0)

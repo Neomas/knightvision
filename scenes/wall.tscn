@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://6a4qy7bg2j3k"]
+
+[ext_resource type="Texture2D" uid="uid://dofiup6w5aejr" path="res://assets/Misc/gems/spritesheets/stage-tileset.png" id="1_ip2s2"]
+[ext_resource type="Script" path="res://scenes/wall.gd" id="1_ys5yf"]
+[ext_resource type="Texture2D" uid="uid://bkn31l5eyy4f8" path="res://assets/Misc/gems/spritesheets/gems-spritesheet.png" id="3_0ukcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fd3u8"]
+size = Vector2(16, 16)
+
+[node name="Wall" type="AnimatableBody2D"]
+y_sort_enabled = true
+collision_layer = 7
+collision_mask = 3
+script = ExtResource("1_ys5yf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, -8)
+shape = SubResource("RectangleShape2D_fd3u8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(48, -16)
+texture = ExtResource("1_ip2s2")
+offset = Vector2(-40, 7.9)
+region_enabled = true
+region_rect = Rect2(95.4727, 63.7455, 16.6486, 16.7574)
+
+[node name="Health" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(0, -8)
+scale = Vector2(0.337307, 0.337307)
+texture = ExtResource("3_0ukcx")
+offset = Vector2(24, 0)
+region_enabled = true
+region_rect = Rect2(321.984, 33.7505, 44.449, 13.0639)

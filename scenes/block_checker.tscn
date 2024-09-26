@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dokfhu0g45b2d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6djhh"]
+
+[node name="BlockChecker" type="Area2D"]
+scale = Vector2(1.04137, 1.04137)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6djhh")
